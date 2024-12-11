@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You Jeff!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clarika+Geometri&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Clarika Geometric', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column; /* Use column for vertical stacking */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: auto; /* Allow scrolling */
+        }
+    
+        .text-slide {
+            font-size: 5vw; /* Scale text size based on viewport width */
+            color: #3067db;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px;
+            padding: 20px;
+            opacity: 0;
+            position: relative;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+    
+        #grid {
+            display: none;
+            position: relative;
+            width: 90%; /* Limit width for better responsiveness */
+            column-count: 2; /* Adjust columns for smaller screens */
+            column-gap: 10px;
+            padding: 10px;
+            background-color: #fff;
+            overflow-y: auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+            margin: 20px auto; /* Center grid */
+        }
+    
+        .photo-box, .message-box {
+        padding: 10px;
+        display: block;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Softer shadow */
+        overflow: hidden;
+        width: 100%;
+        max-width: 800px; /* Set reasonable max width */
+        transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+    }
+
+    .message-box {
+        padding: 10px;
+        font-size: 20px;
+        display: block;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Softer shadow */
+        overflow: hidden;
+        width: 100%;
+        max-width: 800px; /* Set reasonable max width */
+        transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+    }
+
+        .photo-box img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* Add hover effect for scaling */
+        .photo-box:hover, .message-box:hover {
+            transform: scale(1.05); /* Grows to 105% of original size */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+        }
+
+    
+        #thank-you-message {
+            padding: 10px;
+            font-size: 80px; /* Responsive font size */
+            text-align: left;
+            color: #3067db;
+            display: none;
+        }
+    
+        /* Media query for larger screens */
+        @media (min-width: 768px) {
+            body {
+                height: 100vh; /* Ensure full height on larger screens */
+            }
+    
+            #grid {
+                column-count: 4; /* More columns for larger screens */
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Slides for text animation -->
+    <div id="slide1" class="text-slide">The team just wanted to take a moment...</div>
+    <div id="slide2" class="text-slide">and thank you for all the work you do,</div>
+    <div id="slide3" class="text-slide">and for being a great manager.</div>
+
+
+    
+    <div id="grid">
+        <div id="thank-you-message">Thank You, Jeff!
+        </div>
+    </div>
+
+    <script>
+        const photoData = [
+            './ecard imgs/image1.png',
+            './ecard imgs/image2.png',
+            './ecard imgs/image3.png',
+            './ecard imgs/image4.png',
+            './ecard imgs/image5.png',
+            './ecard imgs/image6.png',
+            './ecard imgs/image7.png',
+            './ecard imgs/image8.png',
+            './ecard imgs/image9.png',
+            './ecard imgs/image10.png',
+            './ecard imgs/image11.png',
+            './ecard imgs/image12.png',
+            './ecard imgs/image13.png'
+        ];
+ 
+        const messageData = [
+            { from: 'Scott', message: 'Jeff, thanks for a great year. You are a great manager and you have kept our ship sailing straight. None of us have jumped overboard. You shield us from difficult situations and make our day to day life easier and structured.' },
+            { from: 'Matt', message: 'Jeff,  Just wanted to take a moment to thank you for being the ultimate team cheerleader, therapist, and technology geek all rolled into one! We may not have capes, but you\u2019re definitely the superhero keeping us from going full-on survival mode. Thanks for motivating us, keeping our spirits high, and ensuring we dont completely lose our minds in the process (though some of us are so close).  Youre the glue that\u2019s holding this crazy team together\u2014don\u2019t worry, we\u2019ll just pretend we"re all in this for the \"team bonding\" experience!  Appreciate all that you do, and if you ever need a medal, let us know. We\u2019re totally ready to make one out of paperclips and some spare office supplies. (I thought you"d appreciate that I used AI to help craft this so not as to use too much company time)' },
+            { from: 'Pam', message: 'Dear Jeff,  I just wanted to thank you for your incredible leadership and support this year. Wishing you a wonderful holiday season filled with joy and relaxation. Looking forward to another great year ahead!  Cheers, Pam' },
+            { from: 'Mike', message: 'Merry Christmas and Happy Holidays!!' },
+            { from: 'Javed', message: 'Thanks for your support and leadership this year Jeff! Looking forward to continued success for the team in the year ahead! Happy holidays!' },
+            { from: 'Tony', message: 'Happy Holidays Jeff! Thanks for being a great leader & all your support! Happy New Year!' },        
+            { from: 'Trisha and Argyle', message: 'Thank you for being such an incredible manager. Your guidance makes such a difference in our work and growth. We feel so lucky to be part of your team and appreciate all the time and effort you invest in helping us succeed. Thank you! 💛 ' }        ];
+
+        const slides = document.querySelectorAll('.text-slide');
+        const grid = document.getElementById('grid');
+
+        // Function to shuffle the items
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
+
+        window.addEventListener('load', () => {
+    // Show the slides with animations
+    slides.forEach((slide, index) => {
+        const slideDistance = 30 * index; // Increase the vertical distance for each slide
+        setTimeout(() => {
+            slide.style.opacity = 1;
+            slide.style.transform = `translateY(${slideDistance}px)`; // Apply sliding down effect
+        }, index * 1500); // Stagger each slide animation
+
+        // Hide the slide after its animation is complete
+        setTimeout(() => {
+            slide.style.opacity = 0;
+            slide.style.transform = `translateY(${slideDistance + 50}px)`; // Move out of view
+            setTimeout(() => {
+                slide.style.display = 'none'; // Hide completely
+            }, 1000); // Wait for the fade-out animation to finish
+        }, (index + 1) * 1500); // Schedule hiding after the animation completes
+    });
+
+    // After all slides are done, show the card
+    setTimeout(() => {
+        // Shuffle the photo array
+        shuffleArray(photoData);
+
+        const maxLength = Math.max(photoData.length, messageData.length);
+        const allItems = [];
+
+        // Add photo and message boxes alternately
+        for (let i = 0; i < maxLength; i++) {
+            // Add photo boxes
+            if (i < photoData.length) {
+                const photoBox = document.createElement('div');
+                photoBox.className = 'photo-box';
+
+                const img = document.createElement('img');
+                img.src = photoData[i];
+                photoBox.appendChild(img);
+
+                allItems.push(photoBox);
+            }
+
+            // Add message boxes
+            if (i < messageData.length) {
+                const messageBox = document.createElement('div');
+                messageBox.className = 'message-box';
+
+                const message = document.createElement('p');
+                message.innerHTML = `<strong>Message:</strong> ${messageData[i].message}<br><strong>From:</strong> ${messageData[i].from}`;
+                messageBox.appendChild(message);
+
+                allItems.push(messageBox);
+            }
+        }
+
+        // Append the items to the grid, which will alternate photo-message
+        allItems.forEach(item => grid.appendChild(item));
+
+        // Slide-in and fade-in the grid
+        grid.style.display = 'block';
+        document.getElementById("thank-you-message").style.display = 'block';
+        setTimeout(() => {
+            grid.style.opacity = 1;
+            grid.style.transform = 'translateY(0)';
+            document.getElementById("thank-you-message").style.opacity = 1;
+            document.getElementById("thank-you-message").style.transform = 'translateY(0)';
+        }, 100); // Delay for slide effect
+    }, slides.length * 1500); // Wait until all text slides are shown
+});
+
+    </script>
+</body>
+</html>
